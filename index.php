@@ -40,7 +40,18 @@ function fetch_data() {
     type: "GET",
     dataType: 'json',
     success: function(response) {
+
+      try {
         fill_data(response)
+      } 
+      catch ( e ) {
+        html_data = "<tr><td colspan='3' align='center'>Sorry unable fetch API data. Some error occured</td></tr>";
+        $("#api-records tbody").html(html_data)
+      }
+    },
+    error : function() {
+        html_data = "<tr><td colspan='3' align='center'><div class='alert alert-warning'>Sorry unable fetch API data. Some error occured</div></td></tr>";
+        $("#api-records tbody").html(html_data)
     }
     })
 
